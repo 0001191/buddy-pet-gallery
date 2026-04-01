@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🐾 Buddy Pet Gallery — All 18 Species</title>
-  <meta name="description" content="Interactive gallery of all 18 Buddy companion pets from Claude Code. Enter any string to hatch your own unique pet!">
-  <meta property="og:title" content="🐾 Buddy Pet Gallery">
-  <meta property="og:description" content="All 18 companion species from Claude Code. Hatch your own unique pet from any string!">
+  <title>🐾 伙伴图鉴 — Claude Code 全部18种宠物</title>
+  <meta name="description" content="Claude Code 中 18 种伙伴宠物的互动图鉴。输入任意字符串，孵化你独一无二的宠物！">
+  <meta property="og:title" content="🐾 伙伴图鉴">
+  <meta property="og:description" content="Claude Code 全部 18 种伙伴宠物。输入任意字符串，孵化你的专属宠物！">
   <meta property="og:type" content="website">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -351,25 +351,25 @@
 <canvas id="stars-canvas"></canvas>
 
 <header>
-  <div class="logo">🐾 Buddy Pet Gallery</div>
-  <div class="subtitle">ALL 18 COMPANION SPECIES FROM CLAUDE CODE</div>
+  <div class="logo">🐾 伙伴图鉴</div>
+  <div class="subtitle">Claude Code · 全部 18 种伙伴宠物</div>
   <div class="header-links">
-    <a class="header-link" href="https://github.com/your-username/buddy-pet-gallery" target="_blank">⭐ GitHub</a>
-    <a class="header-link" href="#hatch">🥚 Hatch Yours</a>
-    <a class="header-link" href="#gallery">📖 Gallery</a>
+    <a class="header-link" href="https://github.com/0001191/buddy-pet-gallery" target="_blank">⭐ GitHub</a>
+    <a class="header-link" href="#hatch">🥚 孵化</a>
+    <a class="header-link" href="#gallery">📖 图鉴</a>
   </div>
 </header>
 
 <!-- Hatch Section -->
 <section class="roll-section" id="hatch">
   <div class="roll-card">
-    <h2>🥚 Hatch Your Buddy — Enter Any String</h2>
+    <h2>🥚 孵化你的伙伴 — 输入任意字符串</h2>
     <div class="input-row">
       <input type="text" id="user-id-input"
-        placeholder="your username, name, anything…" maxlength="80"
+        placeholder="用户名、名字、任意字符…" maxlength="80"
         autocomplete="off" spellcheck="false">
-      <button class="btn-hatch" onclick="hatchPet()">Hatch →</button>
-      <button class="btn-icon" onclick="hatchRandom()" title="Random roll">🎲</button>
+      <button class="btn-hatch" onclick="hatchPet()">孵化 →</button>
+      <button class="btn-icon" onclick="hatchRandom()" title="随机孵化">🎲</button>
     </div>
     <div id="roll-result">
       <div class="result-inner">
@@ -382,7 +382,7 @@
           <div class="stat-bars" id="roll-stats"></div>
           <div class="result-share">
             <input type="text" id="share-url" readonly>
-            <button class="btn-copy" onclick="copyShareUrl()">Copy Link</button>
+            <button class="btn-copy" onclick="copyShareUrl()">复制链接</button>
           </div>
         </div>
       </div>
@@ -393,9 +393,9 @@
 <!-- Gallery -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-header">
-    <h2>📖 Species Compendium · 18 Buddies</h2>
+    <h2>📖 物种图鉴 · 18 种伙伴</h2>
     <div class="rarity-filter">
-      <button class="filter-btn active" onclick="filterEye(this,'all')">All Eyes</button>
+      <button class="filter-btn active" onclick="filterEye(this,'all')">全部</button>
       <button class="filter-btn" onclick="filterEye(this,'·')">·</button>
       <button class="filter-btn" onclick="filterEye(this,'✦')">✦</button>
       <button class="filter-btn" onclick="filterEye(this,'×')">×</button>
@@ -408,12 +408,12 @@
 </section>
 
 <footer>
-  Sprites reverse-engineered from
+  精灵图逆向工程自
   <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code" target="_blank"><code>@anthropic-ai/claude-code</code></a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/your-username/buddy-pet-gallery" target="_blank">View on GitHub</a>
+  <a href="https://github.com/0001191/buddy-pet-gallery" target="_blank">GitHub 仓库</a>
   &nbsp;·&nbsp;
-  🥚 Easter egg · 2026-04-01
+  🥚 彩蛋 · 2026-04-01
 </footer>
 
 <!-- Modal -->
@@ -449,14 +449,24 @@ const SPECIES_EMOJI = {
   capybara:'🐭', cactus:'🌵', robot:'🤖', rabbit:'🐰', mushroom:'🍄', chonk:'🫙'
 }
 
+const SPECIES_NAMES_ZH = {
+  duck:'小鸭', goose:'鹅', blob:'果冻', cat:'猫咪', dragon:'龙', octopus:'章鱼',
+  owl:'猫头鹰', penguin:'企鹅', turtle:'乌龟', snail:'蜗牛', ghost:'幽灵', axolotl:'六角龙',
+  capybara:'水豚', cactus:'仙人掌', robot:'机器人', rabbit:'兔子', mushroom:'蘑菇', chonk:'圆球'
+}
+
 const RARITIES       = ['common','uncommon','rare','epic','legendary']
 const RARITY_WEIGHTS = { common:60, uncommon:25, rare:10, epic:4, legendary:1 }
 const RARITY_STARS   = { common:'★', uncommon:'★★', rare:'★★★', epic:'★★★★', legendary:'★★★★★' }
 const RARITY_FLOOR   = { common:5, uncommon:15, rare:25, epic:35, legendary:50 }
+const RARITY_NAMES_ZH = { common:'普通', uncommon:'稀有', rare:'罕见', epic:'史诗', legendary:'传说' }
 
 const EYES      = ['·','✦','×','◉','@','°']
+const EYE_NAMES_ZH = { '·':'圆点', '✦':'星形', '×':'叉叉', '◉':'圆圈', '@':'@形', '°':'角度' }
 const HATS      = ['none','crown','tophat','propeller','halo','wizard','beanie','tinyduck']
+const HAT_NAMES_ZH = { none:'无', crown:'皇冠', tophat:'礼帽', propeller:'螺旋桨', halo:'光环', wizard:'巫师帽', beanie:'毛线帽', tinyduck:'小鸭' }
 const STAT_NAMES = ['DEBUGGING','PATIENCE','CHAOS','WISDOM','SNARK']
+const STAT_NAMES_ZH = { DEBUGGING:'调试', PATIENCE:'耐心', CHAOS:'混沌', WISDOM:'智慧', SNARK:'毒舌' }
 
 const HAT_LINES = {
   none:       '            ',
@@ -664,13 +674,13 @@ function renderGrid() {
         <pre class="sprite-pre">${renderSprite(pet.species, pet.eye, pet.hat, 0)}</pre>
       </div>
       <div class="pet-name-row">
-        <span class="pet-species r-${pet.rarity}">${SPECIES_EMOJI[pet.species]} ${pet.species}</span>
+        <span class="pet-species r-${pet.rarity}">${SPECIES_EMOJI[pet.species]} ${SPECIES_NAMES_ZH[pet.species]}</span>
         <span class="rarity-star r-${pet.rarity}">${RARITY_STARS[pet.rarity]}</span>
       </div>
       <div class="pet-eye-hat">
-        <span class="tag">👁 ${pet.eye}</span>
-        ${pet.hat !== 'none' ? `<span class="tag">🎩 ${pet.hat}</span>` : ''}
-        ${pet.shiny ? '<span class="shiny-label">✨ SHINY</span>' : ''}
+        <span class="tag">👁 ${EYE_NAMES_ZH[pet.eye] || pet.eye}</span>
+        ${pet.hat !== 'none' ? `<span class="tag">🎩 ${HAT_NAMES_ZH[pet.hat] || pet.hat}</span>` : ''}
+        ${pet.shiny ? '<span class="shiny-label">✨ 闪光</span>' : ''}
       </div>
     `
     card.addEventListener('click', () => openModal(pet))
@@ -732,14 +742,14 @@ function showRollResult(userId, pet) {
   const resultEl = document.getElementById('roll-result')
 
   sprePre.textContent = renderSprite(pet.species, pet.eye, pet.hat, 0)
-  nameEl.textContent  = `${SPECIES_EMOJI[pet.species]} ${pet.species.toUpperCase()}${pet.shiny ? ' ✨' : ''}`
+  nameEl.textContent  = `${SPECIES_EMOJI[pet.species]} ${SPECIES_NAMES_ZH[pet.species]}${pet.shiny ? ' ✨' : ''}`
   nameEl.className    = `result-name r-${pet.rarity}`
-  badgeEl.textContent = `${RARITY_STARS[pet.rarity]} ${pet.rarity.toUpperCase()}`
+  badgeEl.textContent = `${RARITY_STARS[pet.rarity]} ${RARITY_NAMES_ZH[pet.rarity]}`
   badgeEl.className   = `result-rarity-badge badge-${pet.rarity}`
 
   statsEl.innerHTML = STAT_NAMES.map(s => `
     <div class="stat-row">
-      <span class="stat-label">${s}</span>
+      <span class="stat-label">${STAT_NAMES_ZH[s] || s}</span>
       <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pet.stats[s]}%"></div></div>
       <span class="stat-val r-${pet.rarity}">${pet.stats[s]}</span>
     </div>
@@ -760,7 +770,7 @@ function showRollResult(userId, pet) {
 function copyShareUrl() {
   const url = document.getElementById('share-url').value
   if (!url) return
-  navigator.clipboard.writeText(url).then(() => showToast('Link copied! 🔗'))
+  navigator.clipboard.writeText(url).then(() => showToast('链接已复制！🔗'))
 }
 
 function showToast(msg) {
@@ -789,17 +799,17 @@ function openModal(pet) {
   const statsEl = document.getElementById('modal-stats')
 
   titleEl.innerHTML = `
-    <span class="r-${pet.rarity}">${SPECIES_EMOJI[pet.species]} ${pet.species.toUpperCase()}</span>
+    <span class="r-${pet.rarity}">${SPECIES_EMOJI[pet.species]} ${SPECIES_NAMES_ZH[pet.species]}</span>
     <span class="result-rarity-badge badge-${pet.rarity}" style="margin-left:10px;font-size:0.66rem;padding:2px 7px;">
-      ${RARITY_STARS[pet.rarity]} ${pet.rarity}${pet.shiny ? ' ✨' : ''}
+      ${RARITY_STARS[pet.rarity]} ${RARITY_NAMES_ZH[pet.rarity]}${pet.shiny ? ' ✨' : ''}
     </span>
   `
   sprePre.textContent = renderSprite(pet.species, pet.eye, pet.hat, 0)
-  metaEl.innerHTML = `<span>👁 eye: ${pet.eye}</span><span>🎩 hat: ${pet.hat}</span>`
+  metaEl.innerHTML = `<span>👁 眼睛: ${EYE_NAMES_ZH[pet.eye] || pet.eye}</span><span>🎩 帽子: ${HAT_NAMES_ZH[pet.hat] || pet.hat}</span>`
 
   statsEl.innerHTML = STAT_NAMES.map(s => `
     <div class="modal-stat-row">
-      <span class="modal-stat-label">${s}</span>
+      <span class="modal-stat-label">${STAT_NAMES_ZH[s] || s}</span>
       <div class="modal-stat-bar-bg"><div class="modal-stat-bar-fill" style="width:${pet.stats[s]}%"></div></div>
       <span class="modal-stat-val r-${pet.rarity}">${pet.stats[s]}</span>
     </div>
