@@ -1,0 +1,30 @@
+{
+  "name": "buddy-pet-gallery",
+  "version": "1.0.0",
+  "description": "All 18 Buddy companion pet species from Claude Code — interactive web gallery + CLI hatch tool",
+  "main": "buddy-roll.js",
+  "bin": {
+    "buddy-roll": "./buddy-roll.js",
+    "buddy-pet-gallery": "./buddy-roll.js"
+  },
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "demo": "node buddy-roll.js --demo",
+    "all": "node buddy-roll.js --all"
+  },
+  "keywords": [
+    "claude-code",
+    "buddy",
+    "pet",
+    "companion",
+    "ascii",
+    "terminal",
+    "fun",
+    "easter-egg"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}
